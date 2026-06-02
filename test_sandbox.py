@@ -4,22 +4,22 @@ import json
 URL = "http://127.0.0.1:8001/webhooks/github"
 
 mock_payload = {
-    "ref": "refs/heads/main",
+    "ref": "refs/heads/feature",
     "repository": {
         "id": 123456,
-        "name": "dualloop-sandbox",
-        "full_name": "developer/dualloop-sandbox"
+        "name": "dualloop-test-repo",
+        "full_name": "developer/dualloop-test-repo"
     },
     "commits": [
         {
             "id": "abc123sha",
-            "message": "test: triggered standalone webhook test successfully!",
+            "message": "project.toml added",
             "timestamp": "2026-06-01T17:14:28+05:30",
             "author": {
-                "name": "Pair Programmer",
-                "username": "pair_prog"
+                "name": "deepak kumar majhi",
+                "username": "deepak-git"
             },
-            "added": ["README.md"],
+            "added": ["project.toml"],
             "removed": [],
             "modified": []
         }
