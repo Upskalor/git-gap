@@ -1,0 +1,19 @@
+{
+  "repository": "developer/dualloop-sandbox",
+  "branch": "main",
+  "total_commits": 1,
+  "commits": [
+    {
+      "commit_message": "test: triggered standalone webhook test successfully!",
+      "timestamp": "2026-06-01T17:14:28+05:30",
+      "author": "Pair Programmer",
+      "changes_summary": {
+        "files_added": [
+          "README.md"
+        ],
+        "files_modified": [],
+        "files_removed": []
+      }
+    }
+  ]
+}

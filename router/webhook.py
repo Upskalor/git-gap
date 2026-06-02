@@ -162,10 +162,20 @@ async def github_webhook_receiver(
             author_data = item.get("author", {})
             author_name = author_data.get("name") or author_data.get("username") or "Unknown Author"
             
+            # Extract lists of affected files
+            added_files = item.get("added", [])
+            modified_files = item.get("modified", [])
+            removed_files = item.get("removed", [])
+            
             simplified_commits.append({
                 "commit_message": message,
                 "timestamp": timestamp,
-                "author": author_name
+                "author": author_name,
+                "changes_summary": {
+                    "files_added": added_files,
+                    "files_modified": modified_files,
+                    "files_removed": removed_files
+                }
             })
 
         # Calculate time metadata
