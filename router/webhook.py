@@ -146,21 +146,23 @@ async def github_webhook_receiver(
                 detail="Invalid payload structure: missing repository identifiers"
             )
 
+        # Extract branch name from payload 'ref' (e.g. 'refs/heads/main' -> 'main')
+        ref = payload.get("ref", "")
+        branch = ref.split("/")[-1] if ref else "unknown_branch"
+
         # -------------------------------------------------------------
-        # Log to Local Sandbox JSON file (reponame_day_date_time.json)
+        # Log to Local Sandbox JSON file (reponame_branch_day_timestamp.json)
         # -------------------------------------------------------------
         incoming_commits = payload.get("commits", [])
         simplified_commits = []
         
         for item in incoming_commits:
-            branch = item.get("branch")
             message = item.get("message", "No message provided")
             timestamp = item.get("timestamp", "")
             author_data = item.get("author", {})
             author_name = author_data.get("name") or author_data.get("username") or "Unknown Author"
             
             simplified_commits.append({
-                "commit_on_branch": branch,
                 "commit_message": message,
                 "timestamp": timestamp,
                 "author": author_name
@@ -169,12 +171,11 @@ async def github_webhook_receiver(
         # Calculate time metadata
         now = datetime.now()
         day_name = now.strftime("%A")
-        date_str = now.strftime("%Y-%m-%d")
-        time_str = now.strftime("%H-%M-%S")
+        timestamp_str = now.strftime("%Y-%m-%d_%H-%M-%S")
         
         # Prevent directory traversal anomalies in file system writing
         safe_repo_name = short_repo_name.replace("/", "_").replace("\\", "_")
-        filename = f"{safe_repo_name}_{day_name}_{date_str}_{time_str}.json"
+        filename = f"{safe_repo_name}_{branch}_{day_name}_{timestamp_str}.json"
         
         # Build path to saved_payloads directory relative to this folder
         base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -184,6 +185,7 @@ async def github_webhook_receiver(
         
         output_payload = {
             "repository": repo_name,
+            "branch": branch,
             "total_commits": len(simplified_commits),
             "commits": simplified_commits
         }
@@ -203,6 +205,7 @@ async def github_webhook_receiver(
             "status": "success",
             "message": f"Successfully parsed {len(simplified_commits)} commits.",
             "repository": repo_name,
+            "branch": branch,
             "saved_file": filename,
             "payload": output_payload
         }
