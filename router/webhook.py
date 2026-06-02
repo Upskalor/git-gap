@@ -153,12 +153,14 @@ async def github_webhook_receiver(
         simplified_commits = []
         
         for item in incoming_commits:
+            branch = item.get("branch")
             message = item.get("message", "No message provided")
             timestamp = item.get("timestamp", "")
             author_data = item.get("author", {})
             author_name = author_data.get("name") or author_data.get("username") or "Unknown Author"
             
             simplified_commits.append({
+                "commit_on_branch": branch
                 "commit_message": message,
                 "timestamp": timestamp,
                 "author": author_name
