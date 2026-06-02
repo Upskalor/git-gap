@@ -1,0 +1,23 @@
+{
+  "repository": "deepakkumarmajhi-git/test-repo",
+  "branch": "test_branch",
+  "total_commits": 1,
+  "commits": [
+    {
+      "commit_message": "json response with all the important details added",
+      "timestamp": "2026-06-02T15:08:14+05:30",
+      "author": "Deepak Kumar Majhi",
+      "changes_summary": {
+        "files_added": [
+          "saved_payloads/dualloop-sandbox_main_Tuesday_2026-06-02_15-07-14.json",
+          "saved_payloads/test-repo_test_branch_Tuesday_2026-06-02_14-49-55.json"
+        ],
+        "files_modified": [
+          "router/__pycache__/webhook.cpython-311.pyc",
+          "router/webhook.py"
+        ],
+        "files_removed": []
+      }
+    }
+  ]
+}
