@@ -168,6 +168,7 @@ async def github_webhook_receiver(
             removed_files = item.get("removed", [])
             
             simplified_commits.append({
+                "commit_sha": item.get("id"),
                 "commit_message": message,
                 "timestamp": timestamp,
                 "author": author_name,
@@ -194,6 +195,7 @@ async def github_webhook_receiver(
         filepath = os.path.join(saved_dir, filename)
         
         output_payload = {
+            
             "repository": repo_name,
             "branch": branch,
             "commit_sha": item.get("id"),
