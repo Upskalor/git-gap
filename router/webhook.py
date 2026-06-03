@@ -196,6 +196,7 @@ async def github_webhook_receiver(
         output_payload = {
             "repository": repo_name,
             "branch": branch,
+            "commit_sha": item.get("id"),
             "total_commits": len(simplified_commits),
             "commits": simplified_commits
         }
