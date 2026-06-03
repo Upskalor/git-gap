@@ -198,7 +198,6 @@ async def github_webhook_receiver(
             
             "repository": repo_name,
             "branch": branch,
-            "commit_sha": item.get("id"),
             "total_commits": len(simplified_commits),
             "commits": simplified_commits
         }
