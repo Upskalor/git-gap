@@ -23,7 +23,6 @@ def get_webhook_secret() -> Optional[str]:
     Replace or configure this function to match your project's settings system.
     """
     return os.getenv("GITHUB_WEBHOOK_SECRET")
-logger.info("Webhook secret retrieval function is configured to read from GITHUB_WEBHOOK_SECRET environment variable.")
 
 async def verify_signature(request: Request, x_hub_signature_256: Optional[str]) -> None:
     """
@@ -74,7 +73,6 @@ async def verify_signature(request: Request, x_hub_signature_256: Optional[str])
             status_code=status.HTTP_403_FORBIDDEN,
             detail="Invalid webhook signature validation failed",
         )
-logger.info("Signature validation successful: Webhook request is authentic.")
 
 def process_webhook_payload(payload: Dict[str, Any]) -> None:
     """
