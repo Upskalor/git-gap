@@ -23,6 +23,7 @@ def get_webhook_secret() -> Optional[str]:
     Replace or configure this function to match your project's settings system.
     """
     return os.getenv("GITHUB_WEBHOOK_SECRET")
+    
 
 async def verify_signature(request: Request, x_hub_signature_256: Optional[str]) -> None:
     """

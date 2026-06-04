@@ -1,0 +1,22 @@
+{
+  "repository": "deepakkumarmajhi-git/test-repo",
+  "branch": "test_branch",
+  "total_commits": 1,
+  "commits": [
+    {
+      "commit_sha": "ad174ce1f2664838d9ab63ce383e52c4297b2bb0",
+      "commit_message": "logging testing",
+      "timestamp": "2026-06-04T07:11:41+05:30",
+      "author": "Deepak Kumar Majhi",
+      "changes_summary": {
+        "files_added": [
+          "saved_payloads/test-repo_test_branch_Thursday_2026-06-04_07-01-36.json"
+        ],
+        "files_modified": [
+          "test_files/testfile_2.py"
+        ],
+        "files_removed": []
+      }
+    }
+  ]
+}

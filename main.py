@@ -1,19 +1,7 @@
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
 from router.webhook import router as webhook_router
-
 app = FastAPI(title="Standalone GitHub Webhook Integration Module")
 
-# Add CORS Middleware (allowing all origins for simple testing/integration)
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-# Mount the webhook router. This exposes the POST "/webhooks/github" endpoint.
 app.include_router(webhook_router)
 
 
